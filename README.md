@@ -7,8 +7,8 @@ This is a Dockerfile / image for Nginx and PHP-FPM
 ### Versioning
 | Docker Tag | Git Release | Nginx Version | PHP Version | Alpine Version |
 |-----|-------|-----|--------|--------|
-| latest | Master Branch |1.18.0 | 8.0.13 | 3.13 |
-| latest |  |1.20.2 | 8.0.13 | 3.14 |
+| 8.0.13-alpine3.13 | main branch |1.18.0 | 8.0.13 | 3.13 |
+| 8.0.13-alpine3.14 | main branch |1.20.2 | 8.0.13 | 3.14 |
 
 ## Quick Start
 
@@ -16,18 +16,14 @@ This is a Dockerfile / image for Nginx and PHP-FPM
 
 1. Install hadolint, pre-commit package in local.
 
-Login ECR
-```
-aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 746434807814.dkr.ecr.us-west-2.amazonaws.com
-```
-
-To pull from docker hub:
-```
-docker pull 746434807814.dkr.ecr.us-west-2.amazonaws.com/nginx-php-fpm:latest
-```
-
 ### Running
 To simply run the container:
 ```
-sudo docker run -d 746434807814.dkr.ecr.us-west-2.amazonaws.com/nginx-php-fpm
+docker run --rm hashman/nginx-php-fpm:8.0.13-alpine3.13
 ```
+
+## Configuration
+
+### Environment
+
+* `N_WORKER`: Default is 1. You can create multiple PHP-FPM workers by setting this variable.
